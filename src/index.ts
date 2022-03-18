@@ -36,10 +36,13 @@ const getOptionalInput = (name: string) => core.getInput(name) || undefined;
   let { changesets } = await readChangesetState();
 
   let publishScript = core.getInput("publish");
+  let snapshotScript = core.getInput("snapshot");
   let hasChangesets = changesets.length !== 0;
   let hasPublishScript = !!publishScript;
+  let hasSnapshotScript = !!snapshotScript;
 
   core.setOutput("published", "false");
+  core.setOutput("snapshotPublished", "false");
   core.setOutput("publishedPackages", "[]");
   core.setOutput("hasChangesets", String(hasChangesets));
 
@@ -104,6 +107,20 @@ const getOptionalInput = (name: string) => core.getInput(name) || undefined;
         commitMessage: getOptionalInput("commit"),
         hasPublishScript,
       });
+      if (hasSnapshotScript) {
+        let result = await runPublish({
+          script: snapshotScript,
+          githubToken,
+          createGithubReleases: core.getBooleanInput("createGithubReleases"),
+        })
+        if(result.published){
+          core.setOutput("snapshotPublished", "true");
+          core.setOutput(
+            "publishedPackages",
+            JSON.stringify(result.publishedPackages)
+          );
+        }
+      }
       return;
   }
 })().catch((err) => {

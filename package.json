@@ -1,5 +1,5 @@
 {
-  "name": "@changesets/action",
+  "name": "@wpmedia/ads-changeset-action",
   "version": "1.2.2",
   "main": "dist/index.js",
   "license": "MIT",
