@@ -1,5 +1,11 @@
 # @changesets/action
 
+## 1.2.3
+
+### Patch Changes
+
+- [`f2b7b60`](https://github.com/changesets/action/commit/f2b7b608f6dc2082092806d5bb9cb5c0d7014ca1) Thanks [@camdub](https://github.com/camdub)! - Add ability to publish snapshot packages if project has changesets
+
 ## 1.2.2
 
 ### Patch Changes
