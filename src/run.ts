@@ -66,6 +66,22 @@ type PublishResult =
       published: false;
     };
 
+/**
+ * Ideally we could just use runPublish and runVersion, but if we use consecutively they alter the branch.
+ * Since runSnapshot should be run alongside with runVersion, need a version that makes a new branch to run
+ * snapshot changes to maintain the state to update the publish PR.
+ */
+export async function runSnapshotPublish(opts: PublishOptions): Promise<PublishResult> {
+  let snapshotBranch = "snapshot-release";
+  await gitUtils.switchToMaybeExistingBranch(snapshotBranch);
+  await gitUtils.reset(github.context.sha);
+
+  let result = await runPublish(opts)
+  await gitUtils.removeBranch(snapshotBranch);
+
+  return result
+}
+
 export async function runPublish({
   script,
   githubToken,

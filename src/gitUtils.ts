@@ -46,6 +46,10 @@ export const switchToMaybeExistingBranch = async (branch: string) => {
   }
 };
 
+export const removeBranch = async (branch: string) => {
+  await exec("git", ["branch", "-d", branch])
+}
+
 export const reset = async (
   pathSpec: string,
   mode: "hard" | "soft" | "mixed" = "hard"

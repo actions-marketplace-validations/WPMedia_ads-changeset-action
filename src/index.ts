@@ -1,7 +1,7 @@
 import * as core from "@actions/core";
 import fs from "fs-extra";
 import * as gitUtils from "./gitUtils";
-import { runPublish, runVersion } from "./run";
+import { runPublish, runVersion, runSnapshotPublish } from "./run";
 import readChangesetState from "./readChangesetState";
 import { printReleaseMessage } from './utils'
 
@@ -103,18 +103,11 @@ const getOptionalInput = (name: string) => core.getInput(name) || undefined;
       return;
     }
     case hasChangesets:
-      await runVersion({
-        script: getOptionalInput("version"),
-        githubToken,
-        prTitle: getOptionalInput("title"),
-        commitMessage: getOptionalInput("commit"),
-        hasPublishScript,
-      });
       if (hasSnapshotScript) {
-        let result = await runPublish({
+        let result = await runSnapshotPublish({
           script: snapshotScript,
           githubToken,
-          createGithubReleases: core.getBooleanInput("createGithubReleases"),
+          createGithubReleases: false,
         })
         if(result.published){
           core.setOutput("snapshotPublished", "true");
@@ -125,6 +118,13 @@ const getOptionalInput = (name: string) => core.getInput(name) || undefined;
           core.setOutput("releaseMessage", printReleaseMessage(result.publishedPackages, true))
         }
       }
+      await runVersion({
+        script: getOptionalInput("version"),
+        githubToken,
+        prTitle: getOptionalInput("title"),
+        commitMessage: getOptionalInput("commit"),
+        hasPublishScript,
+      });
       return;
   }
 })().catch((err) => {
