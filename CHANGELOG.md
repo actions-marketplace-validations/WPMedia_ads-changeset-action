@@ -1,5 +1,11 @@
 # @changesets/action
 
+## 1.4.1
+
+### Patch Changes
+
+- [`b3e6f35`](https://github.com/changesets/action/commit/b3e6f35010b8ec1812588de3d39094521314536d) Thanks [@camdub](https://github.com/camdub)! - Remove branch deletion
+
 ## 1.4.0
 
 ### Minor Changes
