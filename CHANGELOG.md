@@ -1,5 +1,11 @@
 # @changesets/action
 
+## 1.4.0
+
+### Minor Changes
+
+- [`13cce38`](https://github.com/changesets/action/commit/13cce385f1cecd399b42a2c118a33b90ce157d51) Thanks [@camdub](https://github.com/camdub)! - Ensure that both a snapshot and a version PR can be ran together by ensuring both run in separate branches.
+
 ## 1.3.0
 
 ### Minor Changes
