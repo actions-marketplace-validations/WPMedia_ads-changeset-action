@@ -1,5 +1,11 @@
 # @changesets/action
 
+## 1.3.0
+
+### Minor Changes
+
+- [`a09ec98`](https://github.com/changesets/action/commit/a09ec98f535bf3fcbeffd5ac6b2eea1a083f7a28) Thanks [@camdub](https://github.com/camdub)! - Provide a formatted release message as an additional output
+
 ## 1.2.3
 
 ### Patch Changes
