@@ -3,6 +3,7 @@ import fs from "fs-extra";
 import * as gitUtils from "./gitUtils";
 import { runPublish, runVersion } from "./run";
 import readChangesetState from "./readChangesetState";
+import { printReleaseMessage } from './utils'
 
 const getOptionalInput = (name: string) => core.getInput(name) || undefined;
 
@@ -45,6 +46,7 @@ const getOptionalInput = (name: string) => core.getInput(name) || undefined;
   core.setOutput("snapshotPublished", "false");
   core.setOutput("publishedPackages", "[]");
   core.setOutput("hasChangesets", String(hasChangesets));
+  core.setOutput("releaseMessage", "");
 
   switch (true) {
     case !hasChangesets && !hasPublishScript:
@@ -96,6 +98,7 @@ const getOptionalInput = (name: string) => core.getInput(name) || undefined;
           "publishedPackages",
           JSON.stringify(result.publishedPackages)
         );
+        core.setOutput("releaseMessage", printReleaseMessage(result.publishedPackages))
       }
       return;
     }
@@ -119,6 +122,7 @@ const getOptionalInput = (name: string) => core.getInput(name) || undefined;
             "publishedPackages",
             JSON.stringify(result.publishedPackages)
           );
+          core.setOutput("releaseMessage", printReleaseMessage(result.publishedPackages, true))
         }
       }
       return;

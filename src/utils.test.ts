@@ -1,4 +1,4 @@
-import { getChangelogEntry, BumpLevels, sortTheThings } from "./utils";
+import { getChangelogEntry, BumpLevels, sortTheThings, printReleaseMessage } from "./utils";
 
 let changelog = `# @keystone-alpha/email
 
@@ -99,3 +99,13 @@ test("it sorts the things right", () => {
   ];
   expect(things.sort(sortTheThings)).toMatchSnapshot();
 });
+
+let pkgs = [{"name": "@xx/xx", "version": "1.2.0"}, {"name": "@xx/xy", "version": "0.8.9"}]
+
+it('prints release prod message', () => {
+  expect(printReleaseMessage(pkgs)).toMatchSnapshot()
+})
+
+it('prints release beta message', () => {
+  expect(printReleaseMessage(pkgs, true)).toMatchSnapshot()
+})

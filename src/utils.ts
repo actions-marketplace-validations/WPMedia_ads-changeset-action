@@ -13,6 +13,8 @@ export const BumpLevels = {
   major: 3,
 } as const;
 
+export type PublishedPackage = { name: string; version: string };
+
 export async function getVersionsByDirectory(cwd: string) {
   let { packages } = await getPackages(cwd);
   return new Map(packages.map((x) => [x.dir, x.packageJson.version]));
@@ -124,4 +126,12 @@ export function sortTheThings(
     return 1;
   }
   return -1;
+}
+
+export function printReleaseMessage(pkgs: PublishedPackage[], beta: boolean = false) {
+  return `The following ADS ${beta ? 'beta ': ''}packages have been released:
+${pkgs.map(pkg => `\t- ${pkg.name}: ${pkg.version}`).join('\n')}${beta ? `
+
+To install beta packages use the @beta tag, e.g., \`npm install @wpmedia/ads-pkg@beta\`` : ''}
+  `
 }

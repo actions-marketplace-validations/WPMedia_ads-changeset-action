@@ -8,6 +8,14 @@ This action for [Changesets](https://github.com/atlassian/changesets) creates a 
 
 ## Usage
 
+### Outputs
+
+Additional outputs:
+- `snapshotPublished` - A boolean value to indicate whether a snapshot publish has happened or not
+- `releaseMessage` - A string containing a formatted message about the packages that were released
+
+### Example Workflow
+
 #### With Publishing
 
 This fork contains an addition to the publishing workflow. You can now provide a snapshot command. This command will be run in addition to the creation of the proposed release PR created by the action and populate the `publishedPackages` key in the action's output.

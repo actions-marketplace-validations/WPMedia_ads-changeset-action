@@ -10,6 +10,7 @@ import {
   getChangedPackages,
   sortTheThings,
   getVersionsByDirectory,
+  PublishedPackage,
 } from "./utils";
 import * as gitUtils from "./gitUtils";
 import readChangesetState from "./readChangesetState";
@@ -55,7 +56,6 @@ type PublishOptions = {
   cwd?: string;
 };
 
-type PublishedPackage = { name: string; version: string };
 
 type PublishResult =
   | {

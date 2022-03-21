@@ -43,3 +43,19 @@ exports[`it works 2`] = `
     Move frontmatter in docs into comments
 "
 `;
+
+exports[`prints release beta message 1`] = `
+"The following ADS beta packages have been released:
+	- @xx/xx: 1.2.0
+	- @xx/xy: 0.8.9
+
+To install beta packages use the @beta tag, e.g., \`npm install @wpmedia/ads-pkg@beta\`
+  "
+`;
+
+exports[`prints release prod message 1`] = `
+"The following ADS packages have been released:
+	- @xx/xx: 1.2.0
+	- @xx/xy: 0.8.9
+  "
+`;
