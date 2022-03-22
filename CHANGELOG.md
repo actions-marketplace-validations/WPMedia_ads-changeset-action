@@ -1,5 +1,11 @@
 # @changesets/action
 
+## 1.4.2
+
+### Patch Changes
+
+- [`99cd00e`](https://github.com/changesets/action/commit/99cd00e58cad628812aeb44ab58c39b1b4bb9e8e) Thanks [@camdub](https://github.com/camdub)! - Reset branch after snapshot deploy so that we can change branches for version PR update.
+
 ## 1.4.1
 
 ### Patch Changes
