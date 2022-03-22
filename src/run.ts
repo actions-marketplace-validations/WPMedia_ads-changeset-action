@@ -77,6 +77,7 @@ export async function runSnapshotPublish(opts: PublishOptions): Promise<PublishR
   await gitUtils.reset(github.context.sha);
 
   let result = await runPublish(opts)
+  await gitUtils.reset(github.context.sha, 'hard');
 
   return result
 }
