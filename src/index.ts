@@ -118,13 +118,17 @@ const getOptionalInput = (name: string) => core.getInput(name) || undefined;
           core.setOutput("releaseMessage", printReleaseMessage(result.publishedPackages, true))
         }
       }
-      await runVersion({
+
+      const { pullRequestNumber } = await runVersion({
         script: getOptionalInput("version"),
         githubToken,
         prTitle: getOptionalInput("title"),
         commitMessage: getOptionalInput("commit"),
         hasPublishScript,
       });
+
+      core.setOutput("pullRequestNumber", String(pullRequestNumber));
+
       return;
   }
 })().catch((err) => {
